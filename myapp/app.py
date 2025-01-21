@@ -1,9 +1,10 @@
 # app.py
 from flask import Flask, render_template, send_from_directory, url_for
+import os
 
-app = Flask(__name__, 
+app = Flask(__name__,
     static_url_path='/static',
-    static_folder='static')
+    static_folder=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static'))
 
 @app.route('/')
 def index():
