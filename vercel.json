@@ -12,6 +12,10 @@
   ],
   "routes": [
     {
+      "src": "/favicon.ico",
+      "dest": "/myapp/static/img/ishiubafavicon.png"
+    },
+    {
       "src": "/static/(.*)",
       "dest": "/myapp/static/$1"
     },
