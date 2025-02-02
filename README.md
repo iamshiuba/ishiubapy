@@ -1,6 +1,6 @@
-# iSHIUBA (Flask)
+# IamSHIUBA (Flask)
 
-A lightweight Flask-based web application that replaces the original ishiubadj project (which used Django). This version focuses on simplicity and performance while maintaining all core functionalities.
+A lightweight Flask-based web application that replaces the original iamshiubadj project (which used Django). This version focuses on simplicity and performance while maintaining all core functionalities.
 
 ## Features
 
@@ -20,7 +20,7 @@ A lightweight Flask-based web application that replaces the original ishiubadj p
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/iamshiuba/ishiubapy.git
+   git clone https://github.com/ishiuba/iamshiuba.git
    cd ishiubapy
    ```
 
@@ -45,12 +45,14 @@ A lightweight Flask-based web application that replaces the original ishiubadj p
 ## Project Structure
 
 ```
-ishiubapy/
-├── layout/          # Base layout templates
-├── project/         # Core web project
+myapp/               # Core web project
+├── static/          # Static assets (CSS, JS, JSON, images)
+├── templates/       # HTML5 files
+│   ├── base.html    # Base layout template
+│   ├── errors/      # Error templates
 │   ├── pages/       # Page templates
 │   └── partials/    # Reusable components
-└── static/          # Static assets (CSS, JS, images)
+└── tests/           # Python tests
 ```
 
 ## Development
@@ -74,8 +76,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-- GitHub: [@iamshiuba](https://github.com/iamshiuba)
-- Project Link: [https://github.com/iamshiuba/ishiubapy](https://github.com/iamshiuba/ishiubapy)
+- GitHub: [@ishiuba](https://github.com/ishiuba)
+- Project Link: [https://github.com/ishiuba/iamshiuba](https://github.com/ishiuba/iamshiuba)
 
 ---
 

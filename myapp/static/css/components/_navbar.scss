@@ -1,6 +1,7 @@
 // Mixins
 @mixin hover-effect {
     transition: all 0.3s ease-in-out;
+
     &:hover {
         background-color: var(--hover-color);
     }
@@ -12,38 +13,24 @@
 }
 
 // Navbar styles
-nav {
-    .d-flex {
-        justify-content: flex-end;
-    }
+.navbar {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
 }
 
 .navbar-toggler {
     border: none;
-    border-radius: .3rem;
-    padding: .5rem;
-    background-color: #ff00007e;
-    color: transparent;
+    padding: 0.7rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
     transition: all 0.3s ease-in-out;
-
-    &:hover {
-        border: none;
-        background-color: var(--bg-primary);
-    }
 }
 
 #langselect {
-    padding: .5rem;
-    @include hover-effect;
+    padding: 1rem;
 
     &.active {
         color: var(--bg-primary);
-    }
-}
-
-.button {
-    &:hover {
-        background-color: var(--hover-color);
     }
 }
 
@@ -55,18 +42,91 @@ nav {
     }
 }
 
-.navbar {
-    > .container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: baseline;
-        justify-content: space-around;
+.navToggler {
+    padding-inline-start: .5rem;
+    padding-block-start: .5rem;
+}
+
+.nav-container {
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.nav-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    .navBrand {
+        a {
+            display: flex;
+            align-items: center;
+
+            .logo {
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+                &:hover {
+                    transform: scale(0.9);
+                }
+            }
+        }
+    }
+}
+
+.nav-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 25%;
+
+    #lang-container {
+        width: max-content;
     }
 }
 
 #pageURl {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
     flex-wrap: wrap;
     justify-content: space-evenly;
+
+    .nav-item {
+        position: relative;
+
+        .nav-link {
+            font-weight: 600;
+            padding: 0.5rem 0;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: var(--bg-primary);
+                transition: width 0.3s ease;
+            }
+
+            &:hover::after,
+            &.active::after {
+                width: 100%;
+            }
+
+            &.active {
+                color: var(--bg-primary);
+            }
+        }
+    }
 }
 
 .navbar-collapse {
@@ -76,10 +136,10 @@ nav {
 
 .nav-underline {
     .active {
-        color: var(--bg-primary) !important;
+        color: var(--bg-primary);
 
         &:hover {
-            color: var(--text-color) !important;
+            color: var(--text-color);
         }
     }
 
@@ -99,7 +159,7 @@ nav {
         transition: all 0.3s ease-in-out;
 
         &:hover {
-            color: var(--bg-secondary);
+            color: var(--text-accent);
             font-weight: 700;
         }
     }
@@ -112,41 +172,50 @@ nav {
 }
 
 // Icons
-.fa-moon, .fa-sun {
-    padding: 1rem;
-    transition: all 0.3s ease-in-out;
-}
-
-.fa-moon {
-    color: hsl(231, 100%, 76%);
+.switch {
+    background-color: transparent;
 
     &:hover {
-        background-color: var(--hover-color);
-        color: hsl(36, 100%, 68%);
-    }
-}
-
-.fa-sun {
-    color: hsl(36, 100%, 68%);
-
-    &:hover {
-        background-color: var(--hover-color);
-        color: hsl(231, 100%, 76%);
+        background-color: var(--text-color);
+        color: var(--accent-color);
     }
 }
 
 .fi {
-    padding: 1.3rem;
+    padding: .6rem 1.5rem;
     transition: all 0.3s ease-in-out;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    width: auto;
 
     &:hover {
         transform: scale(0.9);
-        box-shadow: 0 0 10px 5px var(--shadow-color);
     }
 
     &.active {
         @include active-shadow;
     }
+}
+
+.fi-us {
+    background-image: url('https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/us.svg');
+}
+
+.fi-br {
+    background-image: url('https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/br.svg');
+}
+
+.fi-in {
+    background-image: url('https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/in.svg');
+}
+
+.fi-jp {
+    background-image: url('https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/jp.svg');
+}
+
+.fi-ru {
+    background-image: url('https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/flags/4x3/ru.svg');
 }
 
 .langclp {
@@ -155,5 +224,59 @@ nav {
 
     body.dark & {
         background-color: hsla(0, 83%, 19%, 0.23);
+    }
+}
+
+.navBrand {
+    a {
+        display: inline-block;
+
+        img.svg-icon {
+
+            filter: invert(13%) sepia(83%) saturate(5797%) hue-rotate(0deg) brightness(97%) contrast(118%);
+            transition: all 0.3s ease;
+
+            &:hover {
+                filter: invert(13%) sepia(83%) saturate(2797%) hue-rotate(0deg) brightness(97%) contrast(118%);
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-header {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    #pageURl {
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem 0;
+        gap: 1rem;
+
+        .nav-item {
+            width: 100%;
+
+            .nav-link {
+                padding: 0.8rem 1rem;
+                border-radius: 8px;
+
+                &:hover {
+                    background: var(--hover-color);
+                }
+            }
+        }
+    }
+
+    .nav-bottom {
+        width: 100%;
+        justify-content: space-between;
+        padding: 1rem 0;
     }
 }

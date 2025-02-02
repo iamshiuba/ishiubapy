@@ -3,12 +3,13 @@ async function loadTranslations(language) {
   try {
     const response = await fetch(`/static/translations/${language}.json`);
     if (!response.ok) {
+      // noinspection ExceptionCaughtLocallyJS
       throw new Error(`Error loading translations for ${language}`);
     }
     return await response.json();
   } catch (error) {
     console.error("Translation loading error:", error);
-    return null;
+    throw error; // Relança o erro
   }
 }
 
@@ -25,7 +26,7 @@ async function setLanguage(language) {
 
   // Atualiza título da página
   const currentPath = window.location.pathname.split("/")[1] || "index";
-  document.title = `iSHIUBA - ${translations.title[currentPath] || "iSHIUBA"}`;
+  document.title = `IamSHIUBA - ${translations.title[currentPath] || "IamSHIUBA"}`;
 
   // Atualiza localStorage e lang do HTML
   localStorage.setItem("selectedLanguage", language);
@@ -40,12 +41,14 @@ async function setLanguage(language) {
 // Inicialização
 document.addEventListener("DOMContentLoaded", () => {
   const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
-  setLanguage(savedLanguage);
+  setLanguage(savedLanguage).then(function () {
+  });
 
   // Event listeners para botões de idioma
   document.querySelectorAll("#language button").forEach((button) => {
     button.addEventListener("click", () => {
-      setLanguage(button.dataset.language);
+      setLanguage(button.dataset.language).then(function () {
+      });
     });
   });
 });

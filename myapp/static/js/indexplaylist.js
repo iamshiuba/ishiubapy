@@ -2,7 +2,8 @@ async function loadHighlight() {
   try {
     const response = await fetch("/static/playlists/highlights.json");
     const data = await response.json();
-    const highlight = data.highlight;
+    // noinspection JSUnresolvedReference
+    const {playlistId, title} = data.highlight;
 
     const container = document.getElementById("highlightContainer");
 
@@ -12,8 +13,8 @@ async function loadHighlight() {
     }
 
     const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube.com/embed/videoseries?list=${highlight.playlistId}`;
-    iframe.title = highlight.title;
+    iframe.src = `https://www.youtube.com/embed/videoseries?list=${playlistId}`;
+    iframe.title = title;
     iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
     iframe.referrerPolicy = "strict-origin-when-cross-origin";
     iframe.allowFullscreen = true;
@@ -26,5 +27,6 @@ async function loadHighlight() {
 }
 
 window.onload = function () {
-  loadHighlight();
+  loadHighlight().then(function () {
+  });
 };

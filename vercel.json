@@ -13,7 +13,7 @@
   "routes": [
     {
       "src": "/favicon.ico",
-      "dest": "/myapp/static/img/ishiubafavicon.png"
+      "dest": "/myapp/static/img/is_web.svg"
     },
     {
       "src": "/static/(.*)",
